@@ -5,12 +5,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def evaluateEfe(x):
-  absolutoR=x**2
-  absolutoR=absolutoR-math.sin(x)
-  absolutoR=math.fabs(absolutoR)
-
-  res=(math.sqrt(absolutoR))-3
-  return res
+  num=math.sin(x-3)
+  den=x-(1/2)
+  coci=num/den
+  return coci
 
 def sacarM(a,b):
   m=(a+b)/2

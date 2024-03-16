@@ -5,10 +5,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def evaluateEfe(x):
-  a=x**3
-  b=x**2
-  res=(a/-4)-(b/2)
-  return res
+  num=math.sin(x-3)
+  den=x-(1/2)
+  coci=num/den
+  return coci
 
 def sacarM(a,b):
   numerador=evaluateEfe(b)*(b-a)

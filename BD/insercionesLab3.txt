@@ -1,0 +1,118 @@
+INSERT INTO DEPARTAMENTO (deptno, Nombre, Ubicacion) VALUES 
+(10, 'Contabilidad', 'Aguascalientes'),
+(20, 'Investigación', 'Guadalajara'),
+(30, 'Ventas', 'CDMX'),
+(40, 'Operaciones', 'Tlaxcala');
+
+
+INSERT INTO EMPLEADO (empno, nombre, puesto, jefe, fecha_contratacion, salario, comision, deptno)
+VALUES
+    (1230, 'González', 'Asistente', 1242, '2010-10-12', 8000, NULL, 20),
+    (1231, 'Ramos', 'Vendedor', 1235, '2018-02-13', 16000, 3000, 30),
+    (1232, 'López', 'Vendedor', 1235, '2001-01-01', 12500, 5000, 30),
+    (1233, 'Morales', 'Administrador', 1238, '2014-05-20', 29750, NULL, 20),
+    (1234, 'Aldama', 'Vendedor', 1235, '2001-09-29', 28500, NULL, 30),
+    (1235, 'Huerta', 'Administrador', 1238, '2009-05-16', 24500, NULL, 30),
+    (1236, 'Rosillo', 'Administrador', 1238, '2017-03-13', 30000, NULL, 10),
+    (1237, 'Segura', 'Analista', 1233, '2005-05-05', 29750, NULL, 20),
+    (1238, 'Huesca', 'Presidente', NULL, '2000-01-01', 50000, NULL, 10),
+    (1239, 'Rosales', 'Vendedor', 1235, '2006-02-24', 15000, 2000, 30),
+    (1240, 'Benitez', 'Asistente', 1237, '2008-09-16', 11000, NULL, 20),
+    (1241, 'Corona', 'Asistente', 1235, '2008-08-23', 9500, NULL, 30),
+    (1242, 'Domínguez', 'Analista', 1233, '2017-07-16', 30000, NULL, 20),
+    (1248, 'Portales', 'Asistente', 1236, '2016-02-14', 13000, NULL, 10);
+
+INSERT INTO PROYECTO (prono, nombre, ubicacion, deptno)
+VALUES
+    (1001, 'P1', 'Tlaxcala', 20),
+    (1004, 'P4', 'CDMX', 30),
+    (1005, 'P5', 'CDMX', 30),
+    (1008, 'P6', 'Aguascalientes', 30);
+
+INSERT INTO EMPLEADO_PROYECTO (empno, prono, horas)
+VALUES
+    (1231, 1004, 15),
+    (1231, 1005, 12),
+    (1232, 1004, 10),
+    (1232, 1008, 8),
+    (1234, 1001, 16),
+    (1234, 1006, 15),
+    (1234, 1008, 5),
+    (1239, 1005, 6),
+    (1248, 1001, 4);
+
+
+SELECT *
+FROM empleado;
+
+Ver todos los empleados
+
+
+SELECT *
+FROM departamento;
+
+Ver todos los departamentos
+
+
+SELECT *
+FROM empleado
+WHERE salario > 1000
+and comision is null;
+
+Ver todos los empleados con un salario mayor a mil pesos y que no reciban comisiones
+
+
+SELECT COUNT(*)
+FROM empleado;
+
+Contar el numero de empleados
+
+
+SELECT SUM(salario)
+FROM empleado;
+
+Ver el salario total de los empleados
+
+
+SELECT SUM(salario)
+FROM empleado
+WHERE puesto LIKE '%admin%';
+
+Ver el salario total de los empleados donde su puesto contenga "admin"
+
+
+SELECT SUM(salario)
+FROM empleado
+GROUP BY puesto;
+
+Ver el salario total por puesto de los empleados;
+
+SELECT DISTINCT puesto
+FROM empleado;
+
+Ver todos los puestos que pueden tener los empleados
+
+
+SELECT empleado.nombre, departamento.nombre
+FROM empleado,departamento;
+
+Ver los nombres de los empleados y los nombres de los departamentos que hay
+
+
+SELECT e.nombre, d.nombre
+FROM empleado e,departamento d
+WHERE e.deptno=d.deptno;
+
+Ver los nombres de los empleados y el nombre del departamento en el que trabajan
+
+
+SELECT e.nombre empleado, d.nombre departamento_empleado, p.nombre proyecto, dd.nombre
+departamento_proyecto, p.ubicacion 'ubicación proyecto', horas
+FROM empleado e,departamento d, departamento dd, proyecto p, empleado_proyecto ep
+WHERE e.deptno=d.deptno
+AND dd.deptno= p.deptno
+AND e.empno = ep.empno
+AND p.prono = ep.prono
+ORDER BY e.nombre;
+
+Ver los empleados que tengan hayan trabajado horas en un proyecto igual que el nombre del proyecto, el departamento del empleado y del proyecto ordenados alfabeticamente

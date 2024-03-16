@@ -5,8 +5,10 @@ import numpy as np
 import pandas as pd
 
 def evaluateEfe(x):
-    resul= np.power(x/4, 2) -6
-    return resul
+  num=math.sin(x-3)
+  den=x-(1/2)
+  coci=num/den
+  return coci
 
 def nuevaEquisi(x0,x1):
     res=x1-((evaluateEfe(x1)*(x0-x1))/evaluateEfe(x0)-evaluateEfe(x1))
