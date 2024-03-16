@@ -1,0 +1,506 @@
+\documentclass[titlepage,a4paper]{article}
+
+% Escritura de acentos:
+%--------------------------------------------------------------------------
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Selección de idioma (español)
+%--------------------------------------------------------------------------
+\usepackage{wrapfig}
+%Manipulacion de imagenes
+%------------------------------------------------------
+
+
+\usepackage[spanish,es-tabla]{babel}
+\selectlanguage{spanish}
+
+% Título, autor, materia y fecha (rellenar)
+%--------------------------------------------------------------------------
+
+\newcommand{\titulo}{Práctica 3: Relaciones} 
+
+\newcommand{\facultad}{Unidad Profesional Interdisciplinaria de Ingeniería Campus Tlaxcala} % ej.: Ciencias, Biología, Química...
+
+\newcommand{\autor}{César Eduardo Arenas Sánchez}
+%\newcommand{\autor2}{Autor2}
+% etc
+\newcommand{\profesor}{Rojas Hernández Jesús}
+\newcommand{\materia}{Bases de Datos}
+
+\newcommand{\ciudad}{Tlaxcala}
+
+\newcommand{\fecha}{\today} % Muestra por defecto la fecha actual
+
+% Paquete para generar texto de relleno. Se puede eliminar
+%--------------------------------------------------------------------------
+
+\usepackage{lipsum}
+
+% Dimensiones de página
+%--------------------------------------------------------------------------
+
+\usepackage[a4paper,includeheadfoot,margin=2.54cm]{geometry}
+
+% Paquetes de la AMS
+%--------------------------------------------------------------------------
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+
+% Paquetes de símbolos usuales y de formato de ecuaciones
+%--------------------------------------------------------------------------
+
+\usepackage{textcomp}
+\usepackage{mathtools}
+\usepackage{commath}
+
+% Teoremas
+%--------------------------------------------------------------------------
+
+\newtheorem{thm}{Teorema}
+\newtheorem*{thm*}{Teorema}
+\newtheorem{cor}[thm]{Corolario}
+\newtheorem{lem}[thm]{Lema}
+\newtheorem{prop}[thm]{Proposición}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definición}
+\newtheorem*{defn*}{Definición}
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Observación}
+
+
+
+% Atajos.
+% Se pueden definir comandos nuevos para acortar cosas que se usan
+% frecuentemente. Como ejemplo, aquí se definen las letras dobles usadas para
+% los conjuntos de los números naturales, enteros, racionales, reales
+% y complejos.
+%--------------------------------------------------------------------------
+
+\def\NN{\mathbb{N}}
+\def\ZZ{\mathbb{Z}}
+\def\QQ{\mathbb{Q}}
+\def\RR{\mathbb{R}}
+\def\CC{\mathbb{C}}
+
+% Paquetes para la inserción de imágenes y figuras
+%--------------------------------------------------------------------------
+
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{caption}
+
+% Formato de los índices
+%--------------------------------------------------------------------------
+\usepackage{hyperref} % referencias interactivas
+\usepackage{tocloft} % paquete de diseño tipográfico
+
+\renewcommand{\cftsecfont}{\normalfont} % evita que los títulos del índice aparezcan en negrita
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}} % crea una línea de puntos entre el índice y el número
+
+% Paquetes y configuración para la inserción de código
+% Por defecto los colores emulan los del editor de MATLAB
+%--------------------------------------------------------------------------
+
+\usepackage{listings} % paquete para introducir los "scripts"
+
+\lstset{language=SQL} % lenguaje a utilizar (ej.: Octave, R, Python...)
+
+\usepackage{color} % paquete de color y definición de los colores a usar
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\lstset{ % 
+        %numbers=left,
+        %stepnumber=1,
+        %numbersep=5pt,
+	backgroundcolor=\color{white},    % color de fondo
+	basicstyle=\tiny,        % tamaño de fuente del código
+	breaklines=true,                 % salto de línea automático
+        breakatwhitespace=true,
+	captionpos=b,                    % coloca los títulos o comentarios sobre el código
+	commentstyle=\color{mygreen},    % formato de los comentarios
+	escapeinside={\%*}{*)},          % permite añadir LaTeX dentro del código
+	keywordstyle=\color{blue},       % formato de destacado de palabras clave
+	stringstyle=\color{mymauve},     % formato de los "strings"
+	frame=tb,						 % coloca una línea sobre el código y otra por debajo
+	tabsize=2,						 % tamaño de las tabulaciones
+        showstringspaces=false,			 % evita que se destaquen los espacios en los "strings"
+	upquote=true,	% comillas rectas
+        }
+
+\lstset{literate= % permite utilizar tildes y otros símbolos dentro del código
+	{á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+	{Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+	{à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+	{À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+	{ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+	{Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+	{â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+	{Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+	{œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+	{ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
+	{ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+	{€}{{\EUR}}1 {£}{{\pounds}}1 {~}{{$\sim$}}1
+}
+
+
+% Encabezado y pie de página (no es necesaria modificación)
+%--------------------------------------------------------------------------
+
+\usepackage{fancyhdr} % Paquete de estilo 
+
+\pagestyle{fancy} % selección del estilo
+\fancyhf{}
+
+\renewcommand{\headrulewidth}{0.5pt} % Grosor de las líneas
+\renewcommand{\footrulewidth}{0.5pt}
+
+\lhead{\scshape \materia} 
+\rhead{\titulo}
+\lfoot{\autor}
+\rfoot{\thepage}
+
+% Inicio del documento
+%--------------------------------------------------------------------------
+
+\begin{document}
+% Si no se desea portada, sustitúyanse las siguientes líneas por:
+%\title{\titulo}
+%\author{\autor}
+%\date{\fecha}
+	
+	% Portada
+	%----------------------------------------------------------------------
+	
+	\begin{titlepage}
+		\centering
+		\includegraphics[width=\linewidth]{pictures/escudo.jpg}\par\vspace{0.5cm}
+		
+		{\scshape\LARGE \facultad\par}
+		
+		\vspace{1cm}
+		
+		{\scshape\Large \materia\par}
+		
+		\vspace{0.5cm}
+            PROFESOR:\par
+            \vspace{0.2cm}
+            {\Large\itshape \profesor}
+
+            \vspace{1.5cm}
+		
+		{\huge\bfseries \titulo\par}	% puede ser necesario modificar si se desea más de una línea
+		
+		\vspace{3cm}
+		ALUMNO:\par
+            \vspace{0.2cm}
+		{\Large\itshape \autor} %\par\vspace{0.1cm} \autor2\par\vspace{0.1cm} \autor3}
+		
+		\vfill
+		
+		\ciudad\par
+		
+		\fecha
+		
+	\end{titlepage}
+	
+	% Dejamos la siguiente página en blanco y sin numerar:
+	
+	%\clearpage\thispagestyle{empty}\mbox{}\setcounter{page}{0}\clearpage
+    
+  % Abstract (borrar el "%" si se requiere)
+  %----------------------------------------------------------------------
+  %\abstract{}
+   
+  % Índice
+  %----------------------------------------------------------------------
+  \tableofcontents{}
+  \newpage{} % elimínese si no se desea un salto de página tras el índice
+\section{Introducción}
+Primero tenemos los datos que están descritos en el documento que describe lo que se debe hacer en esta práctica, por consiguiente incluidos en cada una de sus tablas correspondientes; y por esto es que esta práctica se enfoca únicamente en las consultas que se pidieron adjuntando también una breve explicación en lenguaje coloquial.
+
+\section{Query's}
+\begin{enumerate}
+    \item \textit{Ver todos los empleados}
+    \begin{lstlisting}
+ SELECT *
+-> FROM empleado;
++-------+-----------+---------------+------+--------------------+---------+----------+--------+
+| empno | nombre    | puesto        | jefe | fecha_contratacion | salario | comision | deptno |
++-------+-----------+---------------+------+--------------------+---------+----------+--------+
+|  1230 | González  | Asistente     | 1242 | 2010-10-12         |    8000 |     NULL |     20 |
+|  1231 | Ramos     | Vendedor      | 1235 | 2018-02-13         |   16000 |     3000 |     30 |
+|  1232 | López     | Vendedor      | 1235 | 2001-01-01         |   12500 |     5000 |     30 |
+|  1233 | Morales   | Administrador | 1238 | 2014-05-20         |   29750 |     NULL |     20 |
+|  1234 | Aldama    | Vendedor      | 1235 | 2001-09-29         |   28500 |     NULL |     30 |
+|  1235 | Huerta    | Administrador | 1238 | 2009-05-16         |   24500 |     NULL |     30 |
+|  1236 | Rosillo   | Administrador | 1238 | 2017-03-13         |   30000 |     NULL |     10 |
+|  1237 | Segura    | Analista      | 1233 | 2005-05-05         |   29750 |     NULL |     20 |
+|  1238 | Huesca    | Presidente    | NULL | 2000-01-01         |   50000 |     NULL |     10 |
+|  1239 | Rosales   | Vendedor      | 1235 | 2006-02-24         |   15000 |     2000 |     30 |
+|  1240 | Benitez   | Asistente     | 1237 | 2008-09-16         |   11000 |     NULL |     20 |
+|  1241 | Corona    | Asistente     | 1235 | 2008-08-23         |    9500 |     NULL |     30 |
+|  1242 | Domínguez | Analista      | 1233 | 2017-07-16         |   30000 |     NULL |     20 |
+|  1248 | Portales  | Asistente     | 1236 | 2016-02-14         |   13000 |     NULL |     10 |
++-------+-----------+---------------+------+--------------------+---------+----------+--------+
+14 rows in set (0.0028 sec)
+    \end{lstlisting}
+
+
+    \item \textit{Ver todos los departamentos}
+    \begin{lstlisting}
+SELECT *
+-> FROM departamento;
++--------+---------------+----------------+
+| deptno | nombre        | ubicacion      |
++--------+---------------+----------------+
+|     10 | Contabilidad  | Aguascalientes |
+|     20 | Investigación | Guadalajara    |
+|     30 | Ventas        | CDMX           |
+|     40 | Operaciones   | Tlaxcala       |
++--------+---------------+----------------+
+4 rows in set (0.0021 sec)
+    \end{lstlisting}
+
+
+    \item \textit{Ver todos los empleados con un salario mayor a mil pesos y que no reciban comisiones}
+    \begin{lstlisting}
+SELECT *
+-> FROM empleado
+-> WHERE salario > 1000
+-> and comision is null;
++-------+-----------+---------------+------+--------------------+---------+----------+--------+
+| empno | nombre    | puesto        | jefe | fecha_contratacion | salario | comision | deptno |
++-------+-----------+---------------+------+--------------------+---------+----------+--------+
+|  1230 | González  | Asistente     | 1242 | 2010-10-12         |    8000 |     NULL |     20 |
+|  1233 | Morales   | Administrador | 1238 | 2014-05-20         |   29750 |     NULL |     20 |
+|  1234 | Aldama    | Vendedor      | 1235 | 2001-09-29         |   28500 |     NULL |     30 |
+|  1235 | Huerta    | Administrador | 1238 | 2009-05-16         |   24500 |     NULL |     30 |
+|  1236 | Rosillo   | Administrador | 1238 | 2017-03-13         |   30000 |     NULL |     10 |
+|  1237 | Segura    | Analista      | 1233 | 2005-05-05         |   29750 |     NULL |     20 |
+|  1238 | Huesca    | Presidente    | NULL | 2000-01-01         |   50000 |     NULL |     10 |
+|  1240 | Benitez   | Asistente     | 1237 | 2008-09-16         |   11000 |     NULL |     20 |
+|  1241 | Corona    | Asistente     | 1235 | 2008-08-23         |    9500 |     NULL |     30 |
+|  1242 | Domínguez | Analista      | 1233 | 2017-07-16         |   30000 |     NULL |     20 |
+|  1248 | Portales  | Asistente     | 1236 | 2016-02-14         |   13000 |     NULL |     10 |
++-------+-----------+---------------+------+--------------------+---------+----------+--------+
+11 rows in set (0.0016 sec)
+    \end{lstlisting}
+
+    
+    \item \textit{Contar el numero de empleados}. Cabe aclarar que para este query se muestra en tabla la función \textbf{COUNT} y no propiamente la tabla de empleado.
+    \begin{lstlisting}
+ SELECT COUNT(*)
+-> FROM empleado;
++----------+
+| COUNT(*) |
++----------+
+|       14 |
++----------+
+1 row in set (0.0030 sec)
+    \end{lstlisting}
+
+
+    \item \textit{Ver el salario total de los empleados}
+    \begin{lstlisting}
+SELECT SUM(salario)
+-> FROM empleado;
++--------------+
+| SUM(salario) |
++--------------+
+|       307500 |
++--------------+
+1 row in set (0.0009 sec)
+    \end{lstlisting}
+
+
+    \item \textit{Ver el salario total de los empleados donde su puesto contenga 'admin'}
+    \begin{lstlisting}
+SELECT SUM(salario)
+-> FROM empleado
+-> WHERE puesto LIKE '%admin%';
++--------------+
+| SUM(salario) |
++--------------+
+|        84250 |
++--------------+
+1 row in set (0.0009 sec)
+    \end{lstlisting}
+
+
+    \item \textit{Ver el salario total por puesto de los empleados}. Un posible fallo en este query es que no muestra los grupos de las sumas, ya que sin ver la tabla empleado directamente o usar una query para cada puesto no sabemos a que grupo pertenece la sumatoria del salario.
+    \begin{lstlisting}
+SELECT SUM(salario)
+-> FROM empleado
+-> GROUP BY puesto;
++--------------+
+| SUM(salario) |
++--------------+
+|        41500 |
+|        72000 |
+|        84250 |
+|        59750 |
+|        50000 |
++--------------+
+5 rows in set (0.0007 sec)
+    \end{lstlisting}
+
+    \item \textit{Ver todos los diferentes puestos que pueden tener los empleados}
+    \begin{lstlisting}
+SELECT DISTINCT puesto
+-> FROM empleado;
++---------------+
+| puesto        |
++---------------+
+| Asistente     |
+| Vendedor      |
+| Administrador |
+| Analista      |
+| Presidente    |
++---------------+
+5 rows in set (0.0009 sec)
+    \end{lstlisting}
+
+
+    \item \textit{Ver los nombres de los empleados y los nombres de los departamentos que hay}. Aquí puede verse como cuando mandas a llamar datos de un Excel y quieres que un dato se mantenga fijo con un \$ al inicio del nombre o número de celda que quieres dejar fijo, pues acá el valor de cierto modo fijo es el del nombre del empleado hasta que se vean todos los nombres de departamento.
+    \begin{lstlisting}
+SELECT empleado.nombre, departamento.nombre
+-> FROM empleado,departamento;
++-----------+---------------+
+| nombre    | nombre        |
++-----------+---------------+
+| González  | Operaciones   |
+| González  | Ventas        |
+| González  | Investigación |
+| González  | Contabilidad  |
+| Ramos     | Operaciones   |
+| Ramos     | Ventas        |
+| Ramos     | Investigación |
+| Ramos     | Contabilidad  |
+| López     | Operaciones   |
+| López     | Ventas        |
+| López     | Investigación |
+| López     | Contabilidad  |
+| Morales   | Operaciones   |
+| Morales   | Ventas        |
+| Morales   | Investigación |
+| Morales   | Contabilidad  |
+| Aldama    | Operaciones   |
+| Aldama    | Ventas        |
+| Aldama    | Investigación |
+| Aldama    | Contabilidad  |
+| Huerta    | Operaciones   |
+| Huerta    | Ventas        |
+| Huerta    | Investigación |
+| Huerta    | Contabilidad  |
+| Rosillo   | Operaciones   |
+| Rosillo   | Ventas        |
+| Rosillo   | Investigación |
+| Rosillo   | Contabilidad  |
+| Segura    | Operaciones   |
+| Segura    | Ventas        |
+| Segura    | Investigación |
+| Segura    | Contabilidad  |
+| Huesca    | Operaciones   |
+| Huesca    | Ventas        |
+| Huesca    | Investigación |
+| Huesca    | Contabilidad  |
+| Rosales   | Operaciones   |
+| Rosales   | Ventas        |
+| Rosales   | Investigación |
+| Rosales   | Contabilidad  |
+| Benitez   | Operaciones   |
+| Benitez   | Ventas        |
+| Benitez   | Investigación |
+| Benitez   | Contabilidad  |
+| Corona    | Operaciones   |
+| Corona    | Ventas        |
+| Corona    | Investigación |
+| Corona    | Contabilidad  |
+| Domínguez | Operaciones   |
+| Domínguez | Ventas        |
+| Domínguez | Investigación |
+| Domínguez | Contabilidad  |
+| Portales  | Operaciones   |
+| Portales  | Ventas        |
+| Portales  | Investigación |
+| Portales  | Contabilidad  |
++-----------+---------------+
+56 rows in set (0.0013 sec)
+    \end{lstlisting}
+
+
+    \item \textit{Ver los nombres de los empleados y el nombre del departamento en el que trabajan}
+    \begin{lstlisting}
+SELECT e.nombre, d.nombre
+-> FROM empleado e,departamento d
+-> WHERE e.deptno=d.deptno;
++-----------+---------------+
+| nombre    | nombre        |
++-----------+---------------+
+| González  | Investigación |
+| Ramos     | Ventas        |
+| López     | Ventas        |
+| Morales   | Investigación |
+| Aldama    | Ventas        |
+| Huerta    | Ventas        |
+| Rosillo   | Contabilidad  |
+| Segura    | Investigación |
+| Huesca    | Contabilidad  |
+| Rosales   | Ventas        |
+| Benitez   | Investigación |
+| Corona    | Ventas        |
+| Domínguez | Investigación |
+| Portales  | Contabilidad  |
++-----------+---------------+
+14 rows in set (0.0012 sec)
+    \end{lstlisting}
+
+
+    \item \textit{Ver los empleados que tengan hayan trabajado horas en un proyecto igual que el nombre del proyecto, el departamento del empleado y del proyecto ordenados alfabéticamente}. En general muestra la relación entre las tres tablas de departamento empleado y proyecto marcada por la tabla de empleado\_proyecto
+    \begin{lstlisting}
+SELECT e.nombre empleado, d.nombre departamento_empleado, p.nombre proyecto, dd.nombre
+-> departamento_proyecto, p.ubicacion 'ubicación proyecto', horas
+-> FROM empleado e,departamento d, departamento dd, proyecto p, empleado_proyecto ep
+-> WHERE e.deptno=d.deptno
+-> AND dd.deptno= p.deptno
+-> AND e.empno = ep.empno
+-> AND p.prono = ep.prono
+-> ORDER BY e.nombre;
++----------+-----------------------+----------+-----------------------+--------------------+-------+
+| empleado | departamento_empleado | proyecto | departamento_proyecto | ubicación proyecto | horas |
++----------+-----------------------+----------+-----------------------+--------------------+-------+
+| Aldama   | Ventas                | P1       | Investigación         | Tlaxcala           |    16 |
+| Aldama   | Ventas                | P6       | Ventas                | Aguascalientes     |     5 |
+| López    | Ventas                | P6       | Ventas                | Aguascalientes     |     8 |
+| López    | Ventas                | P4       | Ventas                | CDMX               |    10 |
+| Portales | Contabilidad          | P1       | Investigación         | Tlaxcala           |     4 |
+| Ramos    | Ventas                | P5       | Ventas                | CDMX               |    12 |
+| Ramos    | Ventas                | P4       | Ventas                | CDMX               |    15 |
+| Rosales  | Ventas                | P5       | Ventas                | CDMX               |     6 |
++----------+-----------------------+----------+-----------------------+--------------------+-------+
+8 rows in set (0.0037 sec)
+    \end{lstlisting}
+\end{enumerate}
+
+\section{Conclusión}
+Lo más difícil de esta practica es el interpretar las funciones de suma, conteo, búsqueda que trae incorporadas el SGBD, aparte de poder saber en consola el significado de cada parámetro que cambia la manera en que actúa la función sobre los datos, claramente este problema se soluciona con más práctica por lo cual es un buen comienzo empezar con ello ahora en este momento.
+
+
+%\begin{figure}[p]
+%    \centering
+%    \includegraphics[width=0.8\linewidth]{practica1DB3.jpg}
+%    \caption{Empresa minorista ZAGI}
+%    \label{fig:vista}
+%\end{figure}
+%\section{Conclusión}
+
+\end{document}
