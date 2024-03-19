@@ -1,0 +1,1 @@
+print('chat gpt huele a kola')

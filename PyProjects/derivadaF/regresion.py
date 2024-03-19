@@ -1,9 +1,3 @@
-import pandas as pd
-import math
-from tabulate import tabulate
-import matplotlib.pyplot as plt
-import numpy as np
-
 def f(x):
   return x**4
 
@@ -92,24 +86,3 @@ def alt_d4dx(x, h):
   ff=2*f(xf)
   derivada4=(a-b+c-d+e-ff)/(h**4)
   return derivada4
-
-
-x=float(input('Dame el valor de x:'))
-h=float(input('Dame el valor para h(se sugiere uno muy pequeño):'))
-
-derivada1forma1=d1dx(x,h)
-derivada1forma2=alt_d1dx(x,h)
-derivada2forma1=d2dx(x,h)
-derivada2forma2=alt_d2dx(x,h)
-derivada3forma1=d3dx(x,h)
-derivada3forma2=alt_d3dx(x,h)
-derivada4forma1=d4dx(x,h)
-derivada4forma2=alt_d4dx(x,h)
-print(derivada1forma1)
-print(derivada1forma2)
-print(derivada2forma1)
-print(derivada2forma2)
-print(derivada3forma1)
-print(derivada3forma2)
-print(derivada4forma1)
-print(derivada4forma2)
