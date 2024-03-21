@@ -7,6 +7,8 @@ h=float(input('Dame el valor de h(se sugiere uno muy pequeño):'))
 
 d1dxr=regresion.d1dx(x, h)
 d1dxp=progresion.d1dx(x, h)
+
+
 d1dxc=centrada.d1dx(x,h)
 d1dxc2=centrada.alt_d1dx(x,h)
 d2dxc=centrada.d2dx(x,h)

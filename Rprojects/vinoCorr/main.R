@@ -17,3 +17,30 @@ colnames(datos)[12]<-"Hue"
 colnames(datos)[13]<-"OD280/OD315 of diluted wines"
 colnames(datos)[14]<-"Proline"
 datos <- datos[ , -c(1)]
+
+mean(datos[ , c(1)])
+mean(datos[ , c(2)])
+mean(datos[ , c(3)])
+mean(datos[ , c(4)])
+mean(datos[ , c(5)])
+mean(datos[ , c(6)])
+mean(datos[ , c(7)])
+mean(datos[ , c(8)])
+mean(datos[ , c(9)])
+mean(datos[ , c(10)])
+mean(datos[ , c(11)])
+mean(datos[ , c(12)])
+mean(datos[ , c(13)])
+summary(datos)
+resultados<-c()
+for(i in 1:13) {
+  for(j in i:13) {
+    r <- cor(datos[,i], datos[,j])
+    resultados <- c(resultados, r)
+    
+  }
+}
+
+# Imprime los resultados
+print('Correlaciones')
+print(resultados)
