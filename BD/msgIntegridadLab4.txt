@@ -1,0 +1,13 @@
+Inserción 
+2.-Ya hay una instancia con los mimos atributos
+3.-No hay un numero de departamento que comparta la clave foranea
+4.-si corre
+
+ Delete
+2.-Necesita eliminar las tuplas dde trabaja_en debido a las claves foráneas.
+3.-Necesita eliminarse o modificarse la tupla en departamento, trabaja_en y subordinado, donde tenga el dni como clave foranea
+
+Update
+2.-Puede realiarse 
+3.-No se puede ya que Dno 7 no existe
+4.-No se puede ya que el deni con esa actualización ya le pertenece a otro empleado.
